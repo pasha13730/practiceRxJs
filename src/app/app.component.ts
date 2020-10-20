@@ -89,7 +89,7 @@ export class AppComponent implements OnInit {
 
     }, 10000);
 
-    const click$ = fromEvent(document, 'click'); // observable is a blue print of a data stream
+    const click$ = fromEvent(document, 'click'); 
 
     const subClick = click$.subscribe((evt) => {console.log('click event 1 =>',evt)});
 

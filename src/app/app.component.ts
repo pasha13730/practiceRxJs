@@ -26,18 +26,18 @@ export class AppComponent implements OnInit {
       console.log("lowerCase",lowerCase);
       
     document.addEventListener('click', evt => {
-        console.log(evt); // MultiValue Data Stream //Synchronus Opeartion
+        console.log(evt); // MultiValue Data Stream // Synchronus Opeartion
     })
 
     let counter = 0;
 
     setInterval(() => {
         counter++;
-        console.log("counter",counter);  // MultiValue Data Stream //Synchronus Opeartion
+        console.log("counter",counter);  // MultiValue Data Stream // Synchronus Opeartion
     },1000);
 
     setTimeout(() => {
-      console.log("completes...");  // SingleValue Data Stream //Synchronus Opeartion
+      console.log("completes...");  // SingleValue Data Stream // Synchronus Opeartion
     },3000);
 
   }

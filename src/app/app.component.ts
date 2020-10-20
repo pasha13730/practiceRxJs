@@ -93,7 +93,15 @@ export class AppComponent implements OnInit {
 
     const subClick = click$.subscribe((evt) => {console.log('click event 1 =>',evt)});
 
-    // click$.subscribe(evt => console.log('click event 2 =>',evt));
+     click$.subscribe(
+
+       evt => console.log('click event 2 =>',evt),
+
+       error => console.log(error),
+       
+       () => console.log('completed')
+       
+       );
 
 
   }

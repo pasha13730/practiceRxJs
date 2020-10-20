@@ -44,19 +44,19 @@ export class AppComponent implements OnInit {
 
     const interval$ = interval(1000);  //this interval$ is an observable of number means it emitting value numbers 0,1,2,3,4 etc
 
-    // interval$.subscribe(evt => console.log('data stream 1 =>',evt + 1));
+    interval$.subscribe(evt => console.log('data stream 1 =>',evt + 1));
 
-    // interval$.subscribe(evt => console.log('data stream 2 =>',evt + 1));
+     interval$.subscribe(evt => console.log('data stream 2 =>',evt + 1));
     
-    const timer$ = timer(3000,1000);
+    const timer$ = timer(3000,1000); // observable is a blue print of a stream
     
     // timer$.subscribe(evt => console.log('data stream 3 =>',evt + 1));
 
     const click$= fromEvent(document,'click');
 
-    click$.subscribe((evt) => {console.log('click event 1 =>',evt)});
+    // click$.subscribe((evt) => {console.log('click event 1 =>',evt)});
 
-    click$.subscribe(evt => console.log('click event 2 =>',evt));
+    // click$.subscribe(evt => console.log('click event 2 =>',evt));
 
   }
 

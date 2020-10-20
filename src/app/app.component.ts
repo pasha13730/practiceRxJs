@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
 
 
 
-    const timer$ = timer(3000, 1000); // observable is a blue print of a stream
+    const timer$ = timer(3000, 1000); // observable is a blue print of a data stream
 
     const sub5 = timer$.subscribe(evt => console.log('data stream 5 =>',evt + 1));
 

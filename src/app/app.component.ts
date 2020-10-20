@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { fromEvent, interval, timer } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -25,7 +27,7 @@ export class AppComponent implements OnInit {
     console.log("upperCase", upperCase);
     console.log("lowerCase", lowerCase);
 
-    document.addEventListener('click', evt => {
+    document.addEventListener('resize', evt => {
       let counter = 0;
       console.log(evt); // MultiValue Data Stream // Synchronus Opeartion
 
@@ -40,10 +42,21 @@ export class AppComponent implements OnInit {
       }, 3000);
     })
 
-   
+    const interval$ = interval(1000);  //this interval$ is an observable of number means it emitting value numbers 0,1,2,3,4 etc
 
+    // interval$.subscribe(evt => console.log('data stream 1 =>',evt + 1));
 
+    // interval$.subscribe(evt => console.log('data stream 2 =>',evt + 1));
+    
+    const timer$ = timer(3000,1000);
+    
+    // timer$.subscribe(evt => console.log('data stream 3 =>',evt + 1));
 
+    const click$= fromEvent(document,'click');
+
+    click$.subscribe((evt) => {console.log('click event 1 =>',evt)});
+
+    click$.subscribe(evt => console.log('click event 2 =>',evt));
 
   }
 

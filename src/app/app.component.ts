@@ -1,5 +1,6 @@
-import {createHttpObservable} from './common/util'
+import { createHttpObservable } from './common/util'
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators'
 import { environment } from '../environments/environment'
 
 @Component({
@@ -14,18 +15,23 @@ export class AppComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
     //custom Observables // HTTP Observable
 
-    //  const http$ = Observable.create((observer) => {  //.create is deprecated
-    const http$ = createHttpObservable(environment.SERVICE_BASE_URL);
+    const http$ = createHttpObservable(environment.SERVICE_BASE_URL); //  const http$ = Observable.create((observer) => {  //.create is deprecated
 
-    http$.subscribe(
+    const courses$ = http$
+      .pipe(
+        map(res => Object.values(res["payload"]))  //same with   map(res => res["payload"])
+      );
+
+      courses$.subscribe(
       (courses) => console.log(courses), //first callback
       error => console.log('error =>', error),   //error handling callback
       () => console.log('completed')  //completion callback
     );
 
-    
+
 
   } //ngOnInit()
 

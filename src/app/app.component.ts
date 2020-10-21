@@ -125,8 +125,30 @@ export class AppComponent implements OnInit {
 
     },11000);
 
-
-
   }
 
 }
+
+
+/*
+The Observable Contract and Error Handling
+In order to understand error handling in RxJs, we need to first understand that any given stream can only error out once. This is defined by the Observable contract, which says that a stream can emit zero or more values.
+
+The contract works that way because that is just how all the streams that we observe in our runtime work in practice. Network requests can fail, for example.
+
+A stream can also complete, which means that:
+
+the stream has ended its lifecycle without any error
+after completion, the stream will not emit any further values
+As an alternative to completion, a stream can also error out, which means that:
+
+the stream has ended its lifecycle with an error
+after the error is thrown, the stream will not emit any other values
+Notice that completion or error are mutually exclusive:
+
+if the stream completes, it cannot error out afterwards
+if the streams errors out, it cannot complete afterwards
+Notice also that there is no obligation for the stream to complete or error out, those two possibilities are optional. But only one of those two can occur, not both.
+
+This means that when one particular stream errors out, we cannot use it anymore, according to the Observable contract.
+*/

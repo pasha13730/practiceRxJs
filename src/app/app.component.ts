@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { take } from 'rxjs/operators';
 import { fromEvent, interval, timer } from 'rxjs';
 
 
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
       }, 3000);
     })
 
-    const interval$ = interval(1000);  //this interval$ is an observable of number means it emitting value numbers 0,1,2,3,4 etc
+    const interval$ = interval(4000);  //this interval$ is an observable of number means it emitting value numbers 0,1,2,3,4 etc
 
     const sub1 = interval$.subscribe(evt => console.log('data stream 1 =>', evt + 2));
 
@@ -71,13 +71,13 @@ export class AppComponent implements OnInit {
       sub2.unsubscribe();
       console.log('unsubscribing data stream 2');
 
-    }, 3000);
+    }, 6000);
 
 
 
-    const timer$ = timer(3000, 1000); // observable is a blue print of a data stream
+    const timer$ = timer(3000, 2000); // observable is a blue print of a data stream
 
-    const sub5 = timer$.subscribe(evt => console.log('data stream 5 =>',evt + 1));
+    const sub5 = timer$.subscribe(evt => console.log('data stream 5 =>', evt + 1));
 
     setTimeout(() => {
 
@@ -85,23 +85,46 @@ export class AppComponent implements OnInit {
       console.log('unsubscribing data stream 5');
 
       subClick.unsubscribe();
-      console.log('unsubscribing click event');
+      console.log('unsubscribing click event 1');
 
-    }, 10000);
+    }, 7000);
 
     const click$ = fromEvent(document, 'click');  // observable is a blue print of a data stream
 
-    const subClick = click$.subscribe((evt) => {console.log('click event 1 =>',evt)});
+    const subClick = click$.subscribe((evt) => { console.log('click event 1 =>', evt) });
 
-     click$.subscribe(
+    click$.subscribe(
 
-       evt => console.log('click event 2 =>',evt),
+      evt => console.log('click event 2 =>', evt),
 
-       error => console.log(error),
-       
-       () => console.log('completed')
-       
-       );
+      error => console.log(error),
+
+      () => console.log('completed')
+
+    );
+
+    const numbers = interval(1000);  //no need to write $ sign after observable , it is just to represent an observable
+
+    const takeFourNumbers = numbers.pipe(take(10));
+
+    const sub6 = takeFourNumbers.subscribe(
+
+      x => console.log(' data stream 6 =>', x + 1),
+
+      error => console.log(error),
+
+      () => console.log('data stream 6 => completed')
+
+
+    );
+
+    setTimeout(() => {
+
+      sub6.unsubscribe();
+      console.log('unsubscribing data stream 6');
+
+    },11000);
+
 
 
   }

@@ -12,6 +12,8 @@ import { environment } from '../environments/environment'
 
 export class AppComponent implements OnInit {
 
+  toggle:boolean = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -34,5 +36,11 @@ export class AppComponent implements OnInit {
 
 
   } //ngOnInit()
+
+  toggleSidebar(){
+    this.toggle = !this.toggle;
+  }
+
+
 
 }//class AppComponent

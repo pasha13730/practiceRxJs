@@ -1,0 +1,14 @@
+
+mat-drawer-container{
+    height: 100vh;
+    mat-drawer{
+        width: 150px;
+        mat-icon{
+            margin-right: 10px;
+        }
+    }
+    mat-drawer-content{
+        padding:20px;
+        overflow: hidden;
+    }
+}

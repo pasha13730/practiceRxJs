@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "practiceMaterial"
+    }
+  },
+  "defaultProject": "practiceMaterial",
+  "cli": {
+    "analytics": false
+  }
 }

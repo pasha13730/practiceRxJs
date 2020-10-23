@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators'
+import { Observable } from 'rxjs';
+import { map, filter } from 'rxjs/operators'
 import { environment } from '../../environments/environment'
 import { createHttpObservable } from '../common/util'
 import { Course } from '../model/course';
@@ -12,8 +13,9 @@ import { Course } from '../model/course';
 })
 export class HomeComponent implements OnInit {
 
-  beginnerCourses: Course[] ;
-  advanceCourses: Course[] ;
+  beginnerCourses$: Observable<Course[]>;
+  advanceCourses$: Observable<Course[]>;
+  beginnerCourses: Course[] = [];
 
   constructor() { }
 
@@ -28,15 +30,25 @@ export class HomeComponent implements OnInit {
         map(res => Object.values(res["payload"]))  //same with   map(res => res["payload"])
       );
 
+    this.beginnerCourses$ = courses$
+      .pipe(
+        map((courses : Course[]) => courses.filter(course => course.category == 'BEGINNER' ))
+      );
+      
+     this.beginnerCourses$.subscribe( beginnerCourse => {
+       this.beginnerCourses = beginnerCourse;
+       console.log(this.beginnerCourses);
+       console.log(beginnerCourse);
+       
+      });
+
+     
+     
+
+
     courses$.subscribe(
 
-      (courses:Course[]) => {
-       
-        this.beginnerCourses = courses.filter(course => course.category == 'BEGINNER');
-        
-        this.advanceCourses = courses.filter(course => course.category == 'ADVANCED');
-
-      }, //first callback
+      (courses) => console.log(courses), //first callback
 
       error => console.log('error =>', error),   //error handling callback
 

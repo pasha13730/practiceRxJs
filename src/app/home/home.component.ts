@@ -12,8 +12,8 @@ import { Course } from '../model/course';
 })
 export class HomeComponent implements OnInit {
 
-  beginner: Course[] = [];
-  advanced: Course[] = [];
+  beginnerCourses: Course[] ;
+  advanceCourses: Course[] ;
 
   constructor() { }
 
@@ -29,15 +29,22 @@ export class HomeComponent implements OnInit {
       );
 
     courses$.subscribe(
+
       (courses:Course[]) => {
-        console.log(courses);
-        this.beginner=courses.filter(x => x['category'] == 'BEGINNER');
+       
+        this.beginnerCourses = courses.filter(course => course.category == 'BEGINNER');
+        
+        this.advanceCourses = courses.filter(course => course.category == 'ADVANCED');
+
       }, //first callback
+
       error => console.log('error =>', error),   //error handling callback
+
       () => console.log('completed')  //completion callback
     );
 
-
+    // if we want to yse RxJs as it was meant to be , we shouldavoid writing lots of logic 
+    //inside subscribe , called imperative approach.
 
 
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators'
+import { map, filter, shareReplay, tap } from 'rxjs/operators'
 import { environment } from '../../environments/environment'
 import { createHttpObservable } from '../common/util'
 import { Course } from '../model/course';
@@ -23,11 +23,13 @@ export class HomeComponent implements OnInit {
 
     //custom Observables // HTTP Observable
 
-    const http$  = createHttpObservable(environment.SERVICE_BASE_URL); //  const http$ = Observable.create((observer) => {  //.create is deprecated
+    const http$:Observable<Course[]> = createHttpObservable(environment.SERVICE_BASE_URL); //  const http$ = Observable.create((observer) => {  //.create is deprecated
 
-    const courses$ : Observable<Course[]> = http$
+    const courses$ = http$
       .pipe(
-        map(res => Object.values(res["payload"]))  //same with   map(res => res["payload"])
+        tap(() => {}), //dont know its used yet
+        map(res => Object.values(res["payload"])),  //same with   map(res => res["payload"])
+        shareReplay<Course[]>()
       );
 
     this.beginnerCourses$ = courses$
@@ -40,7 +42,8 @@ export class HomeComponent implements OnInit {
         map((courses ) => courses.filter(course => course.category == 'ADVANCED' ))
       );
      
-      //this is a reactive approach but when inspecting 
+      //this is a reactive approach but when inspecting got to know that two same service call is happening 
+      //to avoid this used shareReplay operator that share the same stream to whoever call the courses$
 
 
   }

@@ -23,11 +23,11 @@ export class HomeComponent implements OnInit {
 
     //custom Observables // HTTP Observable
 
-    const http$:Observable<Course[]> = createHttpObservable(environment.SERVICE_BASE_URL); //  const http$ = Observable.create((observer) => {  //.create is deprecated
+    const http$ = createHttpObservable(environment.SERVICE_BASE_URL); //  const http$ = Observable.create((observer) => {  //.create is deprecated
 
     const courses$ = http$
       .pipe(
-        tap(() => {}), //dont know its used yet
+        tap(x => console.log("HTTP Request Executed", x )), //dont know its used yet
         map(res => Object.values(res["payload"])),  //same with   map(res => res["payload"])
         shareReplay<Course[]>()
       );

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-includes',
   template: `
   
-<div class="includes" style="height:100vh">
+<div class="includes">
 
     <div>
       <app-header></app-header>

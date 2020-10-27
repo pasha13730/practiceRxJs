@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { strict } from 'assert';
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -110,7 +112,7 @@ export class PromiseComponent implements OnInit {
       setTimeout(() => {
         box1.innerText = 'Data Fetched Successfully !!!';
         box1.className = 'success-text';
-      }, 6000)
+      }, 5000)
     })
 
     async function getData() {
@@ -136,6 +138,20 @@ export class PromiseComponent implements OnInit {
     //learning getElementbyId thing
 
     let box1 = document.getElementById('box1');
+
+
+    //fetch api from json placeholder
+
+    let fetch1 = fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json());
+
+    setTimeout(() => {
+      fetch1.then(x => {
+        box1.innerText = JSON.stringify(x);
+      })
+    }, 6000);
+
+
 
   }
 }

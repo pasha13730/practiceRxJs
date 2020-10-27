@@ -1,37 +1,31 @@
 <div *ngIf="promiseVal">
   <h3 class="mt-4">Promise</h3>
-
   <hr>
   <strong> {{ promiseVal | titlecase}} </strong>
   <hr>
-
-  <!-- <strong>
-    <p *ngIf="promiseVal.availability"> Brand Name : {{ promiseVal.name | uppercase }} </p>
-  </strong> -->
-
 </div>
 
+<div class="row">
+  <div class="col-md-6 " >
+    <h2>PromiseTheory</h2>
+    <ol>
+      <li> async</li>
+      <li>
+        <dl>
+          <span> Return single value </span>
+          <dd style="margin: 0px;"> - resolve </dd>
+          <dd style="margin: 0px;"> - reject</dd>
+        </dl>
+      </li>
+    </ol>
+    <h2> ObservablesTheory</h2>
+    <ol>
+      <li> async or sync</li>
+      <li> Return stream of values</li>
+    </ol>
+  </div>
 
-<h4>PromiseTheory</h4>
-<ol>
-  <li> async</li>
-  <li>
-    <dl>
-      <span> Return single value </span>
-      <dd style="margin: 0px;"> - resolve </dd>
-      <dd style="margin: 0px;"> - reject</dd>
-    </dl>
-  </li>
-
-
-
-</ol>
-
-
-
-
-<h4> ObservablesTheory</h4>
-<ol>
-  <li> async or sync</li>
-  <li> Return stream of values</li>
-</ol>
+  <div id="box1" class="col-md-6 simpleText">
+    fetching data.....
+  </div>
+</div>

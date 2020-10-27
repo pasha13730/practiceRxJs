@@ -15,20 +15,20 @@ export class PromiseComponent implements OnInit {
 
   dellAvail:object = {
       name: 'Dell',
-      color: 'Blue',
+      color: 'Silver',
       screenSize: '16 inch',
       availability: true
     }
 
   hpAvail = {
       name: 'HP',
-      color: 'Red',
+      color: 'Grey',
       screenSize: '18 inch',
       availability: true
     }
 
   notAvail = {
-    status : 'Not Available in the store',
+    status : 'Not Available in the store , Check Later',
     availability: false
   }
 

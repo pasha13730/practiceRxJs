@@ -34,7 +34,7 @@ export class PromiseComponent implements OnInit {
 
   dellAvailable() {
     this.selected = 'dell'
-    return false;
+    return true;
   }
 
   hpAvailable() {
@@ -65,7 +65,7 @@ export class PromiseComponent implements OnInit {
 
       else {
         setTimeout(() => {
-          reject('no purchase made');
+          reject(this.notAvail);
         }, 3000)
       }
 
@@ -74,11 +74,11 @@ export class PromiseComponent implements OnInit {
 
     buyLaptop
       .then(res => {
-        this.promiseVal = res;
+        this.promiseVal = JSON.stringify(res);
         console.log('then Block :', res);
       })
       .catch(res => {
-        this.promiseVal = res;
+        this.promiseVal = JSON.stringify(res);
         console.log('catch Block :', res);
       })
 

@@ -31,6 +31,9 @@ import { IncludesComponent } from './includes/includes.component';
 import { HeaderComponent } from './includes/header/header.component';
 import { FooterComponent } from './includes/footer/footer.component';
 import { PromiseComponent } from './promise/promise.component';
+import { ObservableUxTrendzComponent } from './observable-ux-trendz/observable-ux-trendz.component';
+import { ListComponent } from './observable-ux-trendz/list/list.component';
+import { FromEventComponent } from './observable-ux-trendz/from-event/from-event.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +46,10 @@ import { PromiseComponent } from './promise/promise.component';
         IncludesComponent,
         HeaderComponent,
         FooterComponent,
-        PromiseComponent
+        PromiseComponent,
+        ObservableUxTrendzComponent,
+        ListComponent,
+        FromEventComponent
     ],
     imports: [
         BrowserModule,

@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from "./home/home.component";
-import {AboutComponent} from "./about/about.component";
-import {CourseComponent} from "./course/course.component";
+import { HomeComponent } from "./home/home.component";
+import { AboutComponent } from "./about/about.component";
+import { CourseComponent } from "./course/course.component";
 import { IncludesComponent } from './includes/includes.component';
 import { PromiseComponent } from './promise/promise.component';
+import { ObservableUxTrendzComponent } from './observable-ux-trendz/observable-ux-trendz.component';
+import { ListComponent } from './observable-ux-trendz/list/list.component';
+import { FromEventComponent } from './observable-ux-trendz/from-event/from-event.component';
 
 const routes: Routes = [
     {
@@ -15,15 +18,31 @@ const routes: Routes = [
     {
         path: "UxTrendz",
         component: IncludesComponent,
-        children: [{
-            path : "promise",
-            component: PromiseComponent
-        },
-        {
-            path : "**",
-            component: PromiseComponent
-        }
-    ]
+
+        children: [
+            {
+                path: "promise",
+                component: PromiseComponent
+            },
+            {
+                path: "observable",
+                component: ObservableUxTrendzComponent,
+                children: [
+                    {
+                        path: "",
+                        component: ListComponent
+                    },
+                    {
+                        path: "fromEvent",
+                        component: FromEventComponent
+                    }
+                ]
+            },
+            {
+                path: "**",
+                component: ObservableUxTrendzComponent
+            }
+        ]
 
 
     },
@@ -42,7 +61,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }
